@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2026 at 09:12 AM
+-- Generation Time: Mar 19, 2026 at 10:58 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -92,6 +92,13 @@ CREATE TABLE `classes` (
   `semester` enum('1st','2nd','summer') DEFAULT '1st'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `classes`
+--
+
+INSERT INTO `classes` (`class_id`, `course`, `year_level`, `block`, `class_officer_id`, `academic_year`, `semester`) VALUES
+(1, 'BSIS', 2, 'A', 3, '2025-2026', '2nd');
+
 -- --------------------------------------------------------
 
 --
@@ -104,6 +111,13 @@ CREATE TABLE `class_members` (
   `user_id` int(11) NOT NULL,
   `status` enum('enrolled','dropped','graduated') DEFAULT 'enrolled'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `class_members`
+--
+
+INSERT INTO `class_members` (`class_member_id`, `class_id`, `user_id`, `status`) VALUES
+(1, 1, 2, 'enrolled');
 
 -- --------------------------------------------------------
 
@@ -203,6 +217,13 @@ CREATE TABLE `notifications` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`notification_id`, `user_id`, `title`, `message`, `notification_type`, `reference_id`, `is_read`, `created_at`) VALUES
+(1, 3, 'Class Officer Application Approved', 'Your application to become a class officer has been approved!', 'system', NULL, 1, '2026-03-19 09:39:26');
+
 -- --------------------------------------------------------
 
 --
@@ -258,6 +279,34 @@ CREATE TABLE `organization_officers` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pending_officers`
+--
+
+CREATE TABLE `pending_officers` (
+  `pending_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `requested_role` enum('org_officer','class_officer') NOT NULL,
+  `course` varchar(50) DEFAULT NULL,
+  `year_level` int(11) DEFAULT NULL,
+  `block` varchar(10) DEFAULT NULL,
+  `organization_id` int(11) DEFAULT NULL,
+  `status` enum('pending','approved','rejected') DEFAULT 'pending',
+  `request_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `reviewed_by` int(11) DEFAULT NULL,
+  `review_date` timestamp NULL DEFAULT NULL,
+  `rejection_reason` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pending_officers`
+--
+
+INSERT INTO `pending_officers` (`pending_id`, `user_id`, `requested_role`, `course`, `year_level`, `block`, `organization_id`, `status`, `request_date`, `reviewed_by`, `review_date`, `rejection_reason`) VALUES
+(1, 3, 'class_officer', 'BSIS', 2, 'A', NULL, 'approved', '2026-03-19 09:38:09', 1, '2026-03-19 09:39:26', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `saved_announcements`
 --
 
@@ -299,7 +348,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `id_number`, `first_name`, `last_name`, `email`, `password`, `profile_picture`, `contact_number`, `year_level`, `course`, `block`, `role`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'admin001', 'System', 'Admin', 'admin@bu.edu.ph', '$2y$10$cMgpTqtojw3SS.WLvl7e7Ows1NuvaUV00GLJModFENhhC24KbgGbK', NULL, NULL, NULL, NULL, NULL, 'admin', 'active', '2026-03-12 13:57:04', '2026-03-12 14:03:58'),
-(2, '2024-01-07867', 'Peyt', 'Batalla', 'Peyt@gmail.com', '$2y$10$qAdwDH451VXnrSYLrg6lpeqGWr4EdLs0PwAXC3FWcNVnnrJ8Jd3IS', NULL, '', 2, 'BSIS', 'A', 'student_member', 'active', '2026-03-12 15:10:29', '2026-03-12 17:37:21');
+(2, '2024-01-07867', 'Peyt', 'Batalla', 'Peyt@gmail.com', '$2y$10$qAdwDH451VXnrSYLrg6lpeqGWr4EdLs0PwAXC3FWcNVnnrJ8Jd3IS', NULL, '', 2, 'BSIS', 'A', 'student_member', 'active', '2026-03-12 15:10:29', '2026-03-12 17:37:21'),
+(3, '2026-01-001', 'Student', 'Officer', 'studentofficer@gmail.com', '$2y$10$OwvH5fDCtbzNDMaIYRIOmeqfVz1mWZ55tcFoAbncrzzHXDKnL/FF2', NULL, NULL, 2, 'BSIS', 'A', 'class_officer', 'active', '2026-03-19 09:38:09', '2026-03-19 09:39:26');
 
 --
 -- Indexes for dumped tables
@@ -408,6 +458,15 @@ ALTER TABLE `organization_officers`
   ADD KEY `org_id` (`org_id`);
 
 --
+-- Indexes for table `pending_officers`
+--
+ALTER TABLE `pending_officers`
+  ADD PRIMARY KEY (`pending_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `organization_id` (`organization_id`),
+  ADD KEY `reviewed_by` (`reviewed_by`);
+
+--
 -- Indexes for table `saved_announcements`
 --
 ALTER TABLE `saved_announcements`
@@ -449,13 +508,13 @@ ALTER TABLE `attendance_logs`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `class_members`
 --
 ALTER TABLE `class_members`
-  MODIFY `class_member_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `class_member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -485,7 +544,7 @@ ALTER TABLE `merchandise`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `organizations`
@@ -506,6 +565,12 @@ ALTER TABLE `organization_officers`
   MODIFY `officer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `pending_officers`
+--
+ALTER TABLE `pending_officers`
+  MODIFY `pending_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `saved_announcements`
 --
 ALTER TABLE `saved_announcements`
@@ -515,7 +580,7 @@ ALTER TABLE `saved_announcements`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -603,6 +668,14 @@ ALTER TABLE `organization_memberships`
 ALTER TABLE `organization_officers`
   ADD CONSTRAINT `organization_officers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `organization_officers_ibfk_2` FOREIGN KEY (`org_id`) REFERENCES `organizations` (`org_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `pending_officers`
+--
+ALTER TABLE `pending_officers`
+  ADD CONSTRAINT `pending_officers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `pending_officers_ibfk_2` FOREIGN KEY (`organization_id`) REFERENCES `organizations` (`org_id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `pending_officers_ibfk_3` FOREIGN KEY (`reviewed_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `saved_announcements`
