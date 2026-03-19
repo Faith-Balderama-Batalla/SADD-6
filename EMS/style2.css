@@ -1,0 +1,55 @@
+/* ==================== ORGANIZATION OFFICER STYLES ======================= */
+.dashboard-body .org-officer-badge {
+    background: linear-gradient(135deg, #9F7AEA 0%, #6B46C1 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.dashboard-body .org-management-card {
+    border-left: 4px solid #9F7AEA;
+    background: linear-gradient(to right, rgba(159, 122, 234, 0.05), transparent);
+}
+
+.dashboard-body .analytics-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+    border: 1px solid rgba(159, 122, 234, 0.1);
+    transition: all 0.3s ease;
+}
+
+.dashboard-body .analytics-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(159, 122, 234, 0.15);
+    border-color: #9F7AEA;
+}
+
+.dashboard-body .org-stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(159, 122, 234, 0.1);
+    color: #9F7AEA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.dashboard-body .post-announcement-btn {
+    background: linear-gradient(135deg, #9F7AEA 0%, #6B46C1 100%);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.dashboard-body .post-announcement-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(159, 122, 234, 0.3);
+}

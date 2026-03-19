@@ -1,0 +1,100 @@
+/* ==================== ADMIN STYLES ======================= */
+.dashboard-body .admin-badge {
+    background: linear-gradient(135deg, #F56565 0%, #C53030 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.dashboard-body .admin-card {
+    border-left: 4px solid #F56565;
+    background: linear-gradient(to right, rgba(245, 101, 101, 0.05), transparent);
+}
+
+.dashboard-body .stat-card-admin {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+    border: 1px solid rgba(245, 101, 101, 0.1);
+    transition: all 0.3s ease;
+}
+
+.dashboard-body .stat-card-admin:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(245, 101, 101, 0.15);
+    border-color: #F56565;
+}
+
+.dashboard-body .admin-stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(245, 101, 101, 0.1);
+    color: #F56565;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.dashboard-body .approve-btn {
+    background: #48BB78;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.dashboard-body .approve-btn:hover {
+    background: #2F855A;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(72, 187, 120, 0.3);
+}
+
+.dashboard-body .reject-btn {
+    background: #F56565;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.dashboard-body .reject-btn:hover {
+    background: #C53030;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(245, 101, 101, 0.3);
+}
+
+.dashboard-body .pending-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.dashboard-body .pending-table tr {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.dashboard-body .pending-table td {
+    padding: 15px;
+    border: none;
+}
+
+.dashboard-body .pending-table tr:hover {
+    box-shadow: 0 5px 20px rgba(245, 101, 101, 0.1);
+}
+
+.dashboard-body .system-log {
+    font-family: 'Courier New', monospace;
+    background: #1A202C;
+    color: #E6FFFA;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
