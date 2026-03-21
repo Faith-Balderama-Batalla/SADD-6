@@ -29,8 +29,8 @@
                 <span><?php echo $user['first_name']; ?></span><i class="fas fa-chevron-down"></i>
             </button>
             <div class="profile-menu" id="profileMenu">
-                <a href="profile.php" class="profile-menu-item"><i class="fas fa-user"></i><span>Profile</span></a>
-                <a href="settings.php" class="profile-menu-item"><i class="fas fa-cog"></i><span>Settings</span></a>
+                <a href="../profile.php" class="profile-menu-item"><i class="fas fa-user"></i><span>Profile</span></a>
+                <a href="../settings.php" class="profile-menu-item"><i class="fas fa-cog"></i><span>Settings</span></a>
                 <div class="dropdown-divider"></div>
                 <a href="../logout.php" class="profile-menu-item text-danger"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
             </div>
@@ -69,7 +69,7 @@
                 <i class="fas fa-chart-bar menu-icon"></i><span class="menu-text">Reports</span><div class="active-indicator"></div>
             </a>
         </div>
-        <a href="profile.php" class="sidebar-footer-link">
+        <a href="../profile.php" class="sidebar-footer-link">
             <div class="sidebar-footer">
                 <div class="user-info-mini">
                     <div class="user-avatar-mini"><?php echo getUserInitials($user); ?></div>

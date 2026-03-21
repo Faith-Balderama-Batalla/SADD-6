@@ -13,7 +13,7 @@
         </div>
         <div class="user-profile-dropdown">
             <button class="user-profile-btn" id="profileBtn"><div class="profile-image"><div class="profile-initials"><?php echo getUserInitials($user); ?></div></div><span><?php echo $user['first_name']; ?></span><i class="fas fa-chevron-down"></i></button>
-            <div class="profile-menu" id="profileMenu"><a href="profile.php" class="profile-menu-item"><i class="fas fa-user"></i><span>Profile</span></a><a href="settings.php" class="profile-menu-item"><i class="fas fa-cog"></i><span>Settings</span></a><div class="dropdown-divider"></div><a href="../logout.php" class="profile-menu-item text-danger"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></div>
+            <div class="profile-menu" id="profileMenu"><a href="../profile.php" class="profile-menu-item"><i class="fas fa-user"></i><span>Profile</span></a><a href="../settings.php" class="profile-menu-item"><i class="fas fa-cog"></i><span>Settings</span></a><div class="dropdown-divider"></div><a href="../logout.php" class="profile-menu-item text-danger"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></div>
         </div>
     </div>
 </nav>
@@ -26,6 +26,6 @@
             <a href="announcements.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'announcements.php' ? 'active' : ''; ?>" data-tooltip="Announcements"><i class="fas fa-bullhorn menu-icon"></i><span class="menu-text">Announcements</span><div class="active-indicator"></div></a>
             <a href="attendance.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'attendance.php' ? 'active' : ''; ?>" data-tooltip="My Attendance"><i class="fas fa-check-circle menu-icon"></i><span class="menu-text">My Attendance</span><div class="active-indicator"></div></a>
         </div>
-        <a href="profile.php" class="sidebar-footer-link"><div class="sidebar-footer"><div class="user-info-mini"><div class="user-avatar-mini"><?php echo getUserInitials($user); ?></div><div class="user-details-mini"><span class="user-name-mini"><?php echo $user['first_name'].' '.$user['last_name']; ?></span><span class="user-role-mini">Student</span></div><i class="fas fa-chevron-right profile-arrow"></i></div></div></a>
+        <a href="../profile.php" class="sidebar-footer-link"><div class="sidebar-footer"><div class="user-info-mini"><div class="user-avatar-mini"><?php echo getUserInitials($user); ?></div><div class="user-details-mini"><span class="user-name-mini"><?php echo $user['first_name'].' '.$user['last_name']; ?></span><span class="user-role-mini">Student</span></div><i class="fas fa-chevron-right profile-arrow"></i></div></div></a>
         <div class="sidebar-logout"><a href="../logout.php" class="logout-link"><i class="fas fa-sign-out-alt"></i><span class="menu-text">Logout</span></a></div>
     </div>
